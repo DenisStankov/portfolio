@@ -197,7 +197,7 @@ export default function Portfolio() {
           </div>
 
           <h1 className="text-6xl md:text-8xl font-bold mb-6">
-            <span className="text-white">John</span> <span className="text-purple-400">Doe</span>
+            <span className="text-white">Denis</span> <span className="text-purple-400">Stankov</span>
           </h1>
 
           <div className="text-2xl md:text-4xl text-purple-300 mb-8 h-16 flex items-center justify-center">
@@ -436,15 +436,6 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-4 border-t border-purple-500/20 bg-gray-900/50">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-white/60 text-lg">
-            © {new Date().getFullYear()} John Doe. Crafted with <Heart className="inline w-5 h-5 text-purple-400" />{" "}
-            using Next.js
-          </p>
-        </div>
-      </footer>
     </div>
   )
 }
