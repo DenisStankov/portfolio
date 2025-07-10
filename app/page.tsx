@@ -111,8 +111,8 @@ export default function Portfolio() {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a")
-    link.href = "/CV-Denis-Stankov.pdf"
-    link.download = "CV-Denis-Stankov.pdf"
+    link.href = "/Resume 1.png"
+    link.download = "Resume 1.png"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
