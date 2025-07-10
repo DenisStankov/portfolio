@@ -211,15 +211,23 @@ export default function Portfolio() {
             >
               Explore My Work
             </Button>
-            <Button
-              size="lg"
-              variant="outline"
+            <a
+              href="/CV-Denis-Stankov.pdf"
               download="CV-Denis-Stankov.pdf"
-              className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black transform hover:scale-105 transition-all duration-300 bg-transparent"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black transform hover:scale-105 transition-all duration-300 bg-transparent rounded-lg"
+              onClick={(e) => {
+                // Fallback for browsers that don't support download attribute
+                if (!e.currentTarget.download) {
+                  e.preventDefault();
+                  window.open('/CV-Denis-Stankov.pdf', '_blank');
+                }
+              }}
             >
               <Download className="w-5 h-5 mr-2" />
               Download CV
-            </Button>
+            </a>
           </div>
 
           <div className="flex justify-center space-x-8">
