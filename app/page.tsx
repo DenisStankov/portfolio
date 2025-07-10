@@ -254,7 +254,7 @@ export default function Portfolio() {
               ))}
             </div>
 
-            {/* Mobile Menu Button */}
+
             <button
               className="md:hidden p-2 text-white hover:text-purple-400 transition-colors relative group"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
