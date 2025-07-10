@@ -68,7 +68,7 @@
   }
 }
 
-/* Optimized Animations */
+/* Enhanced Animations */
 @keyframes pulse-slow {
   0%,
   100% {
@@ -79,12 +79,71 @@
   }
 }
 
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .animate-pulse-slow {
   animation: pulse-slow 4s ease-in-out infinite;
 }
 
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
 .animation-delay-2s {
   animation-delay: 2s;
+}
+
+.animation-delay-4s {
+  animation-delay: 4s;
 }
 
 /* Smooth scrolling */
@@ -100,4 +159,41 @@ html {
 
 .transform {
   transform: translateZ(0);
+}
+
+/* Custom gradient borders */
+.gradient-border {
+  position: relative;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899, #06b6d4);
+  padding: 2px;
+  border-radius: 12px;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: linear-gradient(45deg, #8b5cf6, #ec4899, #06b6d4);
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Neon glow effect */
+.neon-glow {
+  box-shadow: 0 0 5px theme("colors.purple.400"), 0 0 10px theme("colors.purple.400"), 0 0 15px
+    theme("colors.purple.400"), 0 0 20px theme("colors.purple.400");
+}
+
+/* Text glow effect */
+.text-glow {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
 }
