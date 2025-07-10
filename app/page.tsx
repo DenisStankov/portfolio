@@ -22,7 +22,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 
-export default function Portfolio() {
+export default function Portfolio() { 
   const [isVisible, setIsVisible] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
   const [typedText, setTypedText] = useState("")
