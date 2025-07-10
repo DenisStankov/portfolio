@@ -209,7 +209,7 @@ export default function Portfolio() {
         </div>
       </nav>
 
-      {/* Responsive Hero Section */}
+      {/* Responsive Hero Section */} 
       <section id="hero" className="min-h-screen flex items-center justify-center relative px-4">
         <div
           className={`text-center z-10 transition-all duration-1000 max-w-6xl mx-auto ${
