@@ -10,14 +10,15 @@ import {
   Mail,
   ExternalLink,
   Code,
-  Palette,
-  Smartphone,
+  Database,
+  Globe,
   ChevronDown,
   Download,
   Star,
   Zap,
   Heart,
   Award,
+  Phone,
 } from "lucide-react"
 import Image from "next/image"
 
@@ -27,7 +28,7 @@ export default function Portfolio() {
   const [typedText, setTypedText] = useState("")
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
 
-  const words = ["Full-Stack Developer", "UI/UX Designer", "Creative Thinker", "Problem Solver"]
+  const words = ["Junior Software Developer", "Web Developer", "Problem Solver", "Team Collaborator"]
   const currentWord = words[currentWordIndex]
 
   useEffect(() => {
@@ -92,52 +93,43 @@ export default function Portfolio() {
   }
 
   const skills = [
-    { name: "React", level: 95, icon: Code },
-    { name: "TypeScript", level: 90, icon: Code },
-    { name: "Next.js", level: 88, icon: Code },
-    { name: "UI/UX Design", level: 85, icon: Palette },
-    { name: "Mobile Dev", level: 80, icon: Smartphone },
-    { name: "Node.js", level: 82, icon: Code },
+    { name: "JavaScript", level: 85, icon: Code },
+    { name: "React", level: 80, icon: Code },
+    { name: "HTML5/CSS3", level: 90, icon: Globe },
+    { name: "PostgreSQL", level: 75, icon: Database },
+    { name: "Git/GitHub", level: 85, icon: Code },
+    { name: "Problem Solving", level: 90, icon: Zap },
   ]
 
   const projects = [
     {
-      title: "E-Commerce Platform",
+      title: "Chat App",
       description:
-        "A revolutionary e-commerce solution with AI-powered recommendations and seamless checkout experience.",
+        "A real-time chat application built with modern web technologies, featuring instant messaging and user authentication.",
       image: "/placeholder.svg?height=400&width=600",
-      tags: ["React", "Next.js", "Stripe", "AI", "Tailwind"],
-      github: "#",
+      tags: ["JavaScript", "React", "WebSocket", "CSS3"],
       live: "#",
       featured: true,
+      year: "2020",
     },
     {
-      title: "Task Management Suite",
+      title: "LoLytics",
       description:
-        "Collaborative workspace with real-time updates, advanced analytics, and team productivity insights.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["TypeScript", "React", "Socket.io", "MongoDB", "D3.js"],
-      github: "#",
-      live: "#",
+        "A comprehensive League of Legends analytics platform that tracks summoner performance, analyzes meta champions, and provides real-time statistics with global coverage across all regions.",
+      image:
+        "https://sjc.microlink.io/06Xw6TGfLFh9YgbkGuekn3tMoNhn9QaolZjOSP8q6OwvjGp7HXwC5YQuD_EBzcHx407cxVqgKFodR0dHy45mJQ.jpeg",
+      tags: ["React", "JavaScript", "API Integration", "Real-time Data", "Gaming Analytics"],
+      live: "https://lol-app-green.vercel.app",
       featured: true,
-    },
-    {
-      title: "Creative Portfolio Hub",
-      description:
-        "A stunning portfolio platform with smooth animations, interactive galleries, and dynamic content management.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Next.js", "Framer Motion", "Tailwind", "CMS"],
-      github: "#",
-      live: "#",
-      featured: false,
+      year: "2025",
     },
   ]
 
   const achievements = [
-    { icon: Award, number: "50+", label: "Projects Delivered" },
-    { icon: Star, number: "5+", label: "Years Experience" },
-    { icon: Heart, number: "30+", label: "Happy Clients" },
-    { icon: Zap, number: "100%", label: "Satisfaction Rate" },
+    { icon: Award, number: "2+", label: "Projects Completed" },
+    { icon: Star, number: "2+", label: "Years Experience" },
+    { icon: Heart, number: "100%", label: "Dedication" },
+    { icon: Zap, number: "Fast", label: "Learner" },
   ]
 
   return (
@@ -153,7 +145,7 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="text-2xl font-bold text-white">
-              <span className="text-purple-400">Port</span>folio
+              <span className="text-purple-400">Denis</span> Stankov
             </div>
             <div className="hidden md:flex space-x-8">
               {["hero", "about", "skills", "projects", "contact"].map((section) => (
@@ -185,8 +177,8 @@ export default function Portfolio() {
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full p-1">
                 <div className="w-full h-full bg-black rounded-full p-1">
                   <Image
-                    src="/placeholder.svg?height=144&width=144"
-                    alt="Profile"
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1704722702473-xhHcp3hQwT8sv98wDywtmFzJDxapxN.jpeg"
+                    alt="Denis Stankov Profile"
                     width={144}
                     height={144}
                     className="w-full h-full rounded-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -206,8 +198,9 @@ export default function Portfolio() {
           </div>
 
           <p className="text-lg md:text-xl text-white/70 mb-12 max-w-4xl mx-auto leading-relaxed">
-            Crafting extraordinary digital experiences with clean code and innovative design. Passionate about building
-            solutions that make a difference.
+            Final-year Informatics student at New Bulgarian University, passionate about web development and
+            problem-solving. I learn quickly, thrive in teams, and excel at turning business requirements into working
+            solutions.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
@@ -230,13 +223,15 @@ export default function Portfolio() {
 
           <div className="flex justify-center space-x-8">
             {[
-              { icon: Github, href: "#" },
-              { icon: Linkedin, href: "#" },
-              { icon: Mail, href: "#" },
+              { icon: Github, href: "https://github.com/DenisStankov" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/denis-stankov-0bb790258/" },
+              { icon: Phone, href: "tel:+359878907858" },
             ].map((social, index) => (
               <a
                 key={index}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-4 rounded-full bg-white/5 hover:bg-purple-600/20 border border-purple-500/30 hover:border-purple-400 transform hover:scale-110 transition-all duration-300"
               >
                 <social.icon className="w-7 h-7 text-purple-400" />
@@ -261,18 +256,18 @@ export default function Portfolio() {
             <div className="space-y-8">
               <div className="space-y-6 text-lg md:text-xl text-white/80 leading-relaxed">
                 <p>
-                  {
-                    "I'm a passionate innovator with over 5 years of experience transforming ideas into extraordinary digital realities. My journey began with an insatiable curiosity for technology."
-                  }
+                  {"I'm"} a final-year Informatics student at New Bulgarian University with a passion for web
+                  development and problem-solving. I learn quickly, thrive in teams, and excel at turning business
+                  requirements into working solutions.
                 </p>
                 <p>
-                  Specializing in cutting-edge technologies like React, Next.js, and modern web frameworks, I stay at
-                  the forefront of innovation. My mission is to craft applications that deliver exceptional
-                  functionality.
+                  Currently working as a Business Consultant IT at OBS2GO, where I collaborate with cross-functional
+                  teams to translate business requirements into technical specifications. I have solid experience with
+                  PostgreSQL/SQL, HTML5/CSS3 skills, and foundational experience with JavaScript and React.
                 </p>
                 <p>
-                  When {"I'm"} not immersed in code, you'll find me exploring emerging technologies, mentoring aspiring
-                  developers, and contributing to open-source projects.
+                  My experience includes streamlined data reporting by designing PostgreSQL queries at OBS2GO, reducing
+                  turnaround time by 30%, and implementing visual changes with JavaScript based on client needs.
                 </p>
               </div>
             </div>
@@ -300,7 +295,7 @@ export default function Portfolio() {
       <section id="skills" className="py-32 px-4">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-5xl md:text-7xl font-bold text-center mb-20">
-            Skills & <span className="text-purple-400">Expertise</span>
+            Skills & <span className="text-purple-400">Technologies</span>
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -325,6 +320,21 @@ export default function Portfolio() {
               </Card>
             ))}
           </div>
+
+          <div className="mt-16 text-center">
+            <h3 className="text-2xl font-bold text-white mb-8">Additional Tools & Software</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {["VS Code", "Git/GitHub", "Microsoft 365", "PostgreSQL", "Team Collaboration"].map((tool, index) => (
+                <Badge
+                  key={index}
+                  variant="secondary"
+                  className="bg-purple-600/20 text-purple-300 border border-purple-500/30 px-4 py-2 text-lg"
+                >
+                  {tool}
+                </Badge>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -335,11 +345,11 @@ export default function Portfolio() {
             Featured <span className="text-purple-400">Projects</span>
           </h2>
 
-          <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10">
+          <div className="grid lg:grid-cols-2 gap-10 justify-center">
             {projects.map((project, index) => (
               <Card
                 key={index}
-                className="bg-gray-800/50 border-purple-500/30 hover:border-purple-400/50 transform hover:scale-105 transition-all duration-300 overflow-hidden group"
+                className="bg-gray-800/50 border-purple-500/30 hover:border-purple-400/50 transform hover:scale-105 transition-all duration-300 overflow-hidden group max-w-lg mx-auto"
               >
                 <div className="relative overflow-hidden">
                   <Image
@@ -355,6 +365,9 @@ export default function Portfolio() {
                       <Badge className="bg-purple-600 text-white">Featured</Badge>
                     </div>
                   )}
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-black/50 text-white">{project.year}</Badge>
+                  </div>
                 </div>
 
                 <CardContent className="p-8">
@@ -373,16 +386,11 @@ export default function Portfolio() {
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex space-x-6">
-                    <a
-                      href={project.github}
-                      className="flex items-center text-white/70 hover:text-purple-400 transition-colors duration-300"
-                    >
-                      <Github className="w-5 h-5 mr-2" />
-                      Code
-                    </a>
+                  <div className="flex justify-center">
                     <a
                       href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center text-white/70 hover:text-purple-400 transition-colors duration-300"
                     >
                       <ExternalLink className="w-5 h-5 mr-2" />
@@ -404,23 +412,36 @@ export default function Portfolio() {
           </h2>
 
           <p className="text-xl md:text-2xl text-white/80 mb-16 max-w-4xl mx-auto leading-relaxed">
-            Ready to bring your vision to life? {"Let's"} collaborate and create something extraordinary.
+            Ready to collaborate on your next project? {"I'm"} always excited to work on new challenges and contribute
+            to innovative solutions.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             {[
-              { icon: Mail, title: "Email", info: "john.doe@example.com" },
-              { icon: Linkedin, title: "LinkedIn", info: "linkedin.com/in/johndoe" },
-              { icon: Github, title: "GitHub", info: "github.com/johndoe" },
+              {
+                icon: Mail,
+                title: "Email",
+                info: "denis.stankov02@gmail.com",
+                href: "mailto:denis.stankov02@gmail.com",
+              },
+              {
+                icon: Linkedin,
+                title: "LinkedIn",
+                info: "linkedin.com/in/denis-stankov",
+                href: "https://www.linkedin.com/in/denis-stankov-0bb790258/",
+              },
+              { icon: Phone, title: "Phone", info: "+359 878 907 858", href: "tel:+359878907858" },
             ].map((contact, index) => (
               <Card
                 key={index}
                 className="bg-gray-800/50 border-purple-500/30 hover:border-purple-400/50 transform hover:scale-105 transition-all duration-300 group"
               >
                 <CardContent className="p-8 text-center">
-                  <contact.icon className="w-12 h-12 mx-auto text-purple-400 mb-6 group-hover:scale-110 transition-transform duration-300" />
-                  <h3 className="text-xl font-semibold text-white mb-3">{contact.title}</h3>
-                  <p className="text-white/70">{contact.info}</p>
+                  <a href={contact.href} target="_blank" rel="noopener noreferrer" className="block">
+                    <contact.icon className="w-12 h-12 mx-auto text-purple-400 mb-6 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="text-xl font-semibold text-white mb-3">{contact.title}</h3>
+                    <p className="text-white/70">{contact.info}</p>
+                  </a>
                 </CardContent>
               </Card>
             ))}
@@ -429,6 +450,7 @@ export default function Portfolio() {
           <Button
             size="lg"
             className="bg-purple-600 hover:bg-purple-700 text-white transform hover:scale-105 transition-all duration-300 text-lg px-12 py-6"
+            onClick={() => window.open("mailto:denis.stankov02@gmail.com", "_blank")}
           >
             <Mail className="w-6 h-6 mr-3" />
             Start a Conversation
@@ -436,6 +458,15 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* Footer */}
+      <footer className="py-12 px-4 border-t border-purple-500/20 bg-gray-900/50">
+        <div className="max-w-6xl mx-auto text-center">
+          <p className="text-white/60 text-lg">
+            © {new Date().getFullYear()} Denis Stankov. Built with <Heart className="inline w-5 h-5 text-purple-400" />{" "}
+            using Next.js & React
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
