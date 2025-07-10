@@ -19,14 +19,17 @@ import {
   Heart,
   Award,
   Phone,
+  Menu,
+  X,
 } from "lucide-react"
 import Image from "next/image"
 
-export default function Portfolio() { 
+export default function Portfolio() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
   const [typedText, setTypedText] = useState("")
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const words = ["Junior Software Developer", "Web Developer", "Problem Solver", "Team Collaborator"]
   const currentWord = words[currentWordIndex]
@@ -90,6 +93,16 @@ export default function Portfolio() {
 
   const scrollToSection = (sectionId: string) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" })
+    setMobileMenuOpen(false)
+  }
+
+  const handleDownloadCV = () => {
+    const link = document.createElement("a")
+    link.href = "/CV-Denis-Stankov.pdf"
+    link.download = "CV-Denis-Stankov.pdf"
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const skills = [
@@ -133,26 +146,28 @@ export default function Portfolio() {
   ]
 
   return (
-    <div className="min-h-screen bg-black text-white relative">
+    <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
       {/* Simplified Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/15 rounded-full blur-3xl animate-pulse-slow animation-delay-2s"></div>
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-48 h-48 md:w-80 md:h-80 bg-purple-500/15 rounded-full blur-3xl animate-pulse-slow animation-delay-2s"></div>
       </div>
 
-      {/* Optimized Navigation */}
-      <nav className="fixed top-0 w-full z-40 bg-black/80 backdrop-blur-md border-b border-purple-500/20">
+      {/* Responsive Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-purple-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
-            <div className="text-2xl font-bold text-white">
+            <div className="text-xl md:text-2xl font-bold text-white">
               <span className="text-purple-400">Denis</span> Stankov
             </div>
-            <div className="hidden md:flex space-x-8">
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex space-x-6 lg:space-x-8">
               {["hero", "about", "skills", "projects", "contact"].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className={`capitalize transition-all duration-300 hover:text-purple-400 relative ${
+                  className={`capitalize transition-all duration-300 hover:text-purple-400 relative text-sm lg:text-base ${
                     activeSection === section ? "text-purple-400" : "text-white/80"
                   }`}
                 >
@@ -163,17 +178,46 @@ export default function Portfolio() {
                 </button>
               ))}
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 text-white hover:text-purple-400 transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-purple-500/20">
+              <div className="px-4 py-6 space-y-4">
+                {["hero", "about", "skills", "projects", "contact"].map((section) => (
+                  <button
+                    key={section}
+                    onClick={() => scrollToSection(section)}
+                    className={`block w-full text-left capitalize transition-all duration-300 hover:text-purple-400 py-2 ${
+                      activeSection === section ? "text-purple-400" : "text-white/80"
+                    }`}
+                  >
+                    {section === "hero" ? "Home" : section}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
-      {/* Optimized Hero Section */}
-      <section id="hero" className="min-h-screen flex items-center justify-center relative">
+      {/* Responsive Hero Section */}
+      <section id="hero" className="min-h-screen flex items-center justify-center relative px-4">
         <div
-          className={`text-center z-10 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`text-center z-10 transition-all duration-1000 max-w-6xl mx-auto ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
         >
-          <div className="mb-8">
-            <div className="relative w-40 h-40 mx-auto mb-6 group">
+          <div className="mb-6 md:mb-8">
+            <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 mx-auto mb-6 group">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full p-1">
                 <div className="w-full h-full bg-black rounded-full p-1">
                   <Image
@@ -188,49 +232,41 @@ export default function Portfolio() {
             </div>
           </div>
 
-          <h1 className="text-6xl md:text-8xl font-bold mb-6">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6">
             <span className="text-white">Denis</span> <span className="text-purple-400">Stankov</span>
           </h1>
 
-          <div className="text-2xl md:text-4xl text-purple-300 mb-8 h-16 flex items-center justify-center">
+          <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-purple-300 mb-6 md:mb-8 h-12 md:h-16 flex items-center justify-center">
             {typedText}
             <span className="animate-pulse ml-1">|</span>
           </div>
 
-          <p className="text-lg md:text-xl text-white/70 mb-12 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white/70 mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed px-4">
             Final-year Informatics student at New Bulgarian University, passionate about web development and
             problem-solving. I learn quickly, thrive in teams, and excel at turning business requirements into working
             solutions.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-12 md:mb-16 px-4">
             <Button
               size="lg"
-              className="bg-purple-600 hover:bg-purple-700 text-white transform hover:scale-105 transition-all duration-300"
+              className="bg-purple-600 hover:bg-purple-700 text-white transform hover:scale-105 transition-all duration-300 text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
               onClick={() => scrollToSection("projects")}
             >
               Explore My Work
             </Button>
-            <a
-              href="/CV-Denis-Stankov.pdf"
-              download="CV-Denis-Stankov.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 text-lg font-medium border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black transform hover:scale-105 transition-all duration-300 bg-transparent rounded-lg"
-              onClick={(e) => {
-                // Fallback for browsers that don't support download attribute
-                if (!e.currentTarget.download) {
-                  e.preventDefault();
-                  window.open('/CV-Denis-Stankov.pdf', '_blank');
-                }
-              }}
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-black transform hover:scale-105 transition-all duration-300 bg-transparent text-base md:text-lg px-6 md:px-8 py-3 md:py-4"
+              onClick={handleDownloadCV}
             >
-              <Download className="w-5 h-5 mr-2" />
+              <Download className="w-4 h-4 md:w-5 md:h-5 mr-2" />
               Download CV
-            </a>
+            </Button>
           </div>
 
-          <div className="flex justify-center space-x-8">
+          <div className="flex justify-center space-x-6 md:space-x-8">
             {[
               { icon: Github, href: "https://github.com/DenisStankov" },
               { icon: Linkedin, href: "https://www.linkedin.com/in/denis-stankov-0bb790258/" },
@@ -241,29 +277,29 @@ export default function Portfolio() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-full bg-white/5 hover:bg-purple-600/20 border border-purple-500/30 hover:border-purple-400 transform hover:scale-110 transition-all duration-300"
+                className="p-3 md:p-4 rounded-full bg-white/5 hover:bg-purple-600/20 border border-purple-500/30 hover:border-purple-400 transform hover:scale-110 transition-all duration-300"
               >
-                <social.icon className="w-7 h-7 text-purple-400" />
+                <social.icon className="w-6 h-6 md:w-7 md:h-7 text-purple-400" />
               </a>
             ))}
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <ChevronDown className="w-10 h-10 text-purple-400" />
+        <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <ChevronDown className="w-8 h-8 md:w-10 md:h-10 text-purple-400" />
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-32 px-4 bg-gray-900/50">
+      {/* Responsive About Section */}
+      <section id="about" className="py-16 md:py-24 lg:py-32 px-4 bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-7xl font-bold text-center mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center mb-12 md:mb-16 lg:mb-20">
             About <span className="text-purple-400">Me</span>
           </h2>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div className="space-y-6 text-lg md:text-xl text-white/80 leading-relaxed">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+            <div className="space-y-6 md:space-y-8">
+              <div className="space-y-4 md:space-y-6 text-base md:text-lg lg:text-xl text-white/80 leading-relaxed">
                 <p>
                   {"I'm"} a final-year Informatics student at New Bulgarian University with a passion for web
                   development and problem-solving. I learn quickly, thrive in teams, and excel at turning business
@@ -283,13 +319,15 @@ export default function Portfolio() {
 
             <div className="relative">
               <Card className="bg-gray-800/50 border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardContent className="p-10">
-                  <div className="grid grid-cols-2 gap-8">
+                <CardContent className="p-6 md:p-8 lg:p-10">
+                  <div className="grid grid-cols-2 gap-6 md:gap-8">
                     {achievements.map((achievement, index) => (
                       <div key={index} className="text-center group">
-                        <achievement.icon className="w-12 h-12 mx-auto text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-300" />
-                        <div className="text-4xl font-bold text-white mb-2">{achievement.number}</div>
-                        <div className="text-white/60">{achievement.label}</div>
+                        <achievement.icon className="w-10 h-10 md:w-12 md:h-12 mx-auto text-purple-400 mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300" />
+                        <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-1 md:mb-2">
+                          {achievement.number}
+                        </div>
+                        <div className="text-sm md:text-base text-white/60">{achievement.label}</div>
                       </div>
                     ))}
                   </div>
@@ -300,44 +338,44 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-32 px-4">
+      {/* Responsive Skills Section */}
+      <section id="skills" className="py-16 md:py-24 lg:py-32 px-4">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-7xl font-bold text-center mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center mb-12 md:mb-16 lg:mb-20">
             Skills & <span className="text-purple-400">Technologies</span>
           </h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {skills.map((skill, index) => (
               <Card
                 key={index}
                 className="bg-gray-800/50 border-purple-500/30 hover:border-purple-400/50 transform hover:scale-105 transition-all duration-300 group"
               >
-                <CardContent className="p-8">
-                  <div className="flex items-center mb-6">
-                    <skill.icon className="w-10 h-10 text-purple-400 mr-4 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="text-2xl font-semibold text-white">{skill.name}</h3>
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex items-center mb-4 md:mb-6">
+                    <skill.icon className="w-8 h-8 md:w-10 md:h-10 text-purple-400 mr-3 md:mr-4 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-white">{skill.name}</h3>
                   </div>
-                  <div className="w-full bg-gray-700 rounded-full h-3 mb-4">
+                  <div className="w-full bg-gray-700 rounded-full h-2 md:h-3 mb-3 md:mb-4">
                     <div
-                      className="h-3 rounded-full bg-gradient-to-r from-purple-500 to-purple-400 transition-all duration-1000 ease-out"
+                      className="h-2 md:h-3 rounded-full bg-gradient-to-r from-purple-500 to-purple-400 transition-all duration-1000 ease-out"
                       style={{ width: `${skill.level}%` }}
                     ></div>
                   </div>
-                  <div className="text-right text-purple-300 font-semibold">{skill.level}%</div>
+                  <div className="text-right text-purple-300 font-semibold text-sm md:text-base">{skill.level}%</div>
                 </CardContent>
               </Card>
             ))}
           </div>
 
-          <div className="mt-16 text-center">
-            <h3 className="text-2xl font-bold text-white mb-8">Additional Tools & Software</h3>
-            <div className="flex flex-wrap justify-center gap-4">
+          <div className="mt-12 md:mt-16 text-center">
+            <h3 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8">Additional Tools & Software</h3>
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4">
               {["VS Code", "Git/GitHub", "Microsoft 365", "PostgreSQL", "Team Collaboration"].map((tool, index) => (
                 <Badge
                   key={index}
                   variant="secondary"
-                  className="bg-purple-600/20 text-purple-300 border border-purple-500/30 px-4 py-2 text-lg"
+                  className="bg-purple-600/20 text-purple-300 border border-purple-500/30 px-3 md:px-4 py-1 md:py-2 text-sm md:text-base lg:text-lg"
                 >
                   {tool}
                 </Badge>
@@ -347,18 +385,18 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-32 px-4 bg-gray-900/50">
+      {/* Responsive Projects Section */}
+      <section id="projects" className="py-16 md:py-24 lg:py-32 px-4 bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-7xl font-bold text-center mb-20">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-center mb-12 md:mb-16 lg:mb-20">
             Featured <span className="text-purple-400">Projects</span>
           </h2>
 
-          <div className="grid lg:grid-cols-2 gap-10 justify-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-10 justify-center max-w-5xl mx-auto">
             {projects.map((project, index) => (
               <Card
                 key={index}
-                className="bg-gray-800/50 border-purple-500/30 hover:border-purple-400/50 transform hover:scale-105 transition-all duration-300 overflow-hidden group max-w-lg mx-auto"
+                className="bg-gray-800/50 border-purple-500/30 hover:border-purple-400/50 transform hover:scale-105 transition-all duration-300 overflow-hidden group"
               >
                 <div className="relative overflow-hidden">
                   <Image
@@ -366,30 +404,32 @@ export default function Portfolio() {
                     alt={project.title}
                     width={600}
                     height={400}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-48 md:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   {project.featured && (
-                    <div className="absolute top-4 right-4">
-                      <Badge className="bg-purple-600 text-white">Featured</Badge>
+                    <div className="absolute top-3 md:top-4 right-3 md:right-4">
+                      <Badge className="bg-purple-600 text-white text-xs md:text-sm">Featured</Badge>
                     </div>
                   )}
-                  <div className="absolute top-4 left-4">
-                    <Badge className="bg-black/50 text-white">{project.year}</Badge>
+                  <div className="absolute top-3 md:top-4 left-3 md:left-4">
+                    <Badge className="bg-black/50 text-white text-xs md:text-sm">{project.year}</Badge>
                   </div>
                 </div>
 
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors duration-300">
+                <CardContent className="p-6 md:p-8">
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 group-hover:text-purple-400 transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p className="text-white/70 mb-6 leading-relaxed">{project.description}</p>
-                  <div className="flex flex-wrap gap-3 mb-6">
+                  <p className="text-sm md:text-base text-white/70 mb-4 md:mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 md:gap-3 mb-4 md:mb-6">
                     {project.tags.map((tag, tagIndex) => (
                       <Badge
                         key={tagIndex}
                         variant="secondary"
-                        className="bg-purple-600/20 text-purple-300 border border-purple-500/30"
+                        className="bg-purple-600/20 text-purple-300 border border-purple-500/30 text-xs md:text-sm"
                       >
                         {tag}
                       </Badge>
@@ -400,9 +440,9 @@ export default function Portfolio() {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center text-white/70 hover:text-purple-400 transition-colors duration-300"
+                      className="flex items-center text-sm md:text-base text-white/70 hover:text-purple-400 transition-colors duration-300"
                     >
-                      <ExternalLink className="w-5 h-5 mr-2" />
+                      <ExternalLink className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                       Live Demo
                     </a>
                   </div>
@@ -413,19 +453,19 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-32 px-4">
+      {/* Responsive Contact Section */}
+      <section id="contact" className="py-16 md:py-24 lg:py-32 px-4">
         <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-5xl md:text-7xl font-bold mb-12">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 md:mb-12">
             {"Let's"} <span className="text-purple-400">Connect</span>
           </h2>
 
-          <p className="text-xl md:text-2xl text-white/80 mb-16 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl lg:text-2xl text-white/80 mb-12 md:mb-16 max-w-4xl mx-auto leading-relaxed">
             Ready to collaborate on your next project? {"I'm"} always excited to work on new challenges and contribute
             to innovative solutions.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
             {[
               {
                 icon: Mail,
@@ -445,11 +485,11 @@ export default function Portfolio() {
                 key={index}
                 className="bg-gray-800/50 border-purple-500/30 hover:border-purple-400/50 transform hover:scale-105 transition-all duration-300 group"
               >
-                <CardContent className="p-8 text-center">
+                <CardContent className="p-6 md:p-8 text-center">
                   <a href={contact.href} target="_blank" rel="noopener noreferrer" className="block">
-                    <contact.icon className="w-12 h-12 mx-auto text-purple-400 mb-6 group-hover:scale-110 transition-transform duration-300" />
-                    <h3 className="text-xl font-semibold text-white mb-3">{contact.title}</h3>
-                    <p className="text-white/70">{contact.info}</p>
+                    <contact.icon className="w-10 h-10 md:w-12 md:h-12 mx-auto text-purple-400 mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300" />
+                    <h3 className="text-lg md:text-xl font-semibold text-white mb-2 md:mb-3">{contact.title}</h3>
+                    <p className="text-sm md:text-base text-white/70">{contact.info}</p>
                   </a>
                 </CardContent>
               </Card>
@@ -458,21 +498,21 @@ export default function Portfolio() {
 
           <Button
             size="lg"
-            className="bg-purple-600 hover:bg-purple-700 text-white transform hover:scale-105 transition-all duration-300 text-lg px-12 py-6"
+            className="bg-purple-600 hover:bg-purple-700 text-white transform hover:scale-105 transition-all duration-300 text-base md:text-lg px-8 md:px-12 py-4 md:py-6"
             onClick={() => window.open("mailto:denis.stankov02@gmail.com", "_blank")}
           >
-            <Mail className="w-6 h-6 mr-3" />
+            <Mail className="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3" />
             Start a Conversation
           </Button>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-purple-500/20 bg-gray-900/50">
+      <footer className="py-8 md:py-12 px-4 border-t border-purple-500/20 bg-gray-900/50">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-white/60 text-lg">
-            © {new Date().getFullYear()} Denis Stankov. Built with <Heart className="inline w-5 h-5 text-purple-400" />{" "}
-            using Next.js & React
+          <p className="text-sm md:text-base lg:text-lg text-white/60">
+            © {new Date().getFullYear()} Denis Stankov. Built with{" "}
+            <Heart className="inline w-4 h-4 md:w-5 md:h-5 text-purple-400" /> using Next.js & React
           </p>
         </div>
       </footer>
