@@ -136,7 +136,7 @@ export default function Portfolio() {
       tags: ["JavaScript", "React", "WebSocket", "CSS3"],
       live: "#",
       featured: true,
-      year: "2020",
+      year: "2024-Present",
       gradient: "from-blue-500 via-purple-500 to-pink-500",
     },
     {
@@ -148,7 +148,7 @@ export default function Portfolio() {
       tags: ["React", "JavaScript", "API Integration", "Real-time Data", "Gaming Analytics"],
       live: "https://lol-app-green.vercel.app",
       featured: true,
-      year: "2025",
+      year: "2025-Present",
       gradient: "from-indigo-500 via-purple-500 to-teal-500",
     },
   ]
