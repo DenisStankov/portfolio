@@ -378,12 +378,6 @@ export default function Portfolio() {
             ))}
           </div>
         </div>
-
-        <div className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="p-2 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm">
-            <ChevronDown className="w-8 h-8 md:w-10 md:h-10 text-purple-400" />
-          </div>
-        </div>
       </section>
 
       {/* Enhanced About Section */}
