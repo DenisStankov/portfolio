@@ -432,7 +432,7 @@ export default function Portfolio() {
                 {achievements.map((achievement, index) => (
                   <Card
                     key={index}
-                    className="bg-gradient-to-br from-purple-900/30 via-pink-900/20 to-blue-900/30 border-purple-500/40 hover:border-purple-400/60 transition-all duration-300 hover:transform hover:scale-105 backdrop-blur-sm relative overflow-hidden group"
+                    className="bg-gradient-to-br from-gray-900/95 via-purple-900/50 to-black/90 border-2 border-purple-500/60 hover:border-purple-400/80 hover:border-pink-400/60 transform hover:scale-[1.02] transition-all duration-500 overflow-hidden group backdrop-blur-md relative shadow-2xl hover:shadow-purple-500/30 hover:shadow-2xl"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/15 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <CardContent className="p-4 md:p-6 text-center relative z-10">
@@ -534,9 +534,8 @@ export default function Portfolio() {
                 key={index}
                 className="bg-gradient-to-br from-purple-900/40 via-gray-900/60 to-black/80 border-purple-500/40 hover:border-purple-400/60 transform hover:scale-105 transition-all duration-500 overflow-hidden group backdrop-blur-sm relative"
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-                ></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 via-pink-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-500/5 to-pink-500/10 group-hover:from-purple-500/10 group-hover:via-pink-500/10 group-hover:to-blue-500/10 transition-all duration-500"></div>
                 <div className="relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
                   <Image
