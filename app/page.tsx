@@ -119,11 +119,14 @@ export default function Portfolio() {
   }
 
   const skills = [
-    { name: "JavaScript", level: 85, icon: Code, color: "from-yellow-400 to-orange-500" },
-    { name: "React", level: 80, icon: Code, color: "from-blue-400 to-cyan-500" },
     { name: "HTML5/CSS3", level: 90, icon: Globe, color: "from-orange-400 to-red-500" },
+    { name: "JavaScript", level: 85, icon: Code, color: "from-yellow-400 to-orange-500" },
+    { name: "React", level: 70, icon: Code, color: "from-blue-400 to-cyan-500" },
+    { name: "Next.js", level: 60, icon: Code, color: "from-green-400 to-green-500" },
+    { name: "Tailwind CSS", level: 70, icon: Code, color: "from-pink-400 to-pink-500" },
+    { name: "TypeScript", level: 65, icon: Code, color: "from-blue-400 to-cyan-500" },
     { name: "PostgreSQL", level: 80, icon: Database, color: "from-blue-500 to-indigo-600" },
-    { name: "Git/GitHub", level: 80, icon: Code, color: "from-gray-400 to-gray-600" },
+    { name: "Git/GitHub", level: 60, icon: Code, color: "from-gray-400 to-gray-600" },
     { name: "Node.js", level: 70, icon: Zap, color: "from-purple-400 to-pink-500" },
   ]
 
@@ -143,13 +146,6 @@ export default function Portfolio() {
   ]
 
   const achievements = [
-    {
-      icon: Target,
-      number: "2+",
-      label: "Projects Delivered",
-      color: "text-emerald-400",
-      description: "Successfully completed projects",
-    },
     {
       icon: Clock,
       number: "2+",
@@ -483,7 +479,7 @@ export default function Portfolio() {
           <div className="text-center">
             <h3 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8">Additional Tools & Software</h3>
             <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-              {["VS Code", "Git/GitHub", "Microsoft 365", "PostgreSQL", "Team Collaboration"].map((tool, index) => (
+              {["VS Code", "Git/GitHub", "Microsoft 365", "PostgreSQL"].map((tool, index) => (
                 <Badge
                   key={index}
                   variant="secondary"
