@@ -122,23 +122,12 @@ export default function Portfolio() {
     { name: "JavaScript", level: 85, icon: Code, color: "from-yellow-400 to-orange-500" },
     { name: "React", level: 80, icon: Code, color: "from-blue-400 to-cyan-500" },
     { name: "HTML5/CSS3", level: 90, icon: Globe, color: "from-orange-400 to-red-500" },
-    { name: "PostgreSQL", level: 75, icon: Database, color: "from-blue-500 to-indigo-600" },
-    { name: "Git/GitHub", level: 85, icon: Code, color: "from-gray-400 to-gray-600" },
-    { name: "Problem Solving", level: 90, icon: Zap, color: "from-purple-400 to-pink-500" },
+    { name: "PostgreSQL", level: 80, icon: Database, color: "from-blue-500 to-indigo-600" },
+    { name: "Git/GitHub", level: 80, icon: Code, color: "from-gray-400 to-gray-600" },
+    { name: "Node.js", level: 70, icon: Zap, color: "from-purple-400 to-pink-500" },
   ]
 
   const projects = [
-    {
-      title: "Chat App",
-      description:
-        "A real-time chat application built with modern web technologies, featuring instant messaging and user authentication.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["JavaScript", "React", "WebSocket", "CSS3"],
-      live: "#",
-      featured: true,
-      year: "2024-Present",
-      gradient: "from-blue-500 via-purple-500 to-pink-500",
-    },
     {
       title: "LoLytics",
       description:
@@ -328,7 +317,7 @@ export default function Portfolio() {
           </div>
 
           <p className="text-base sm:text-lg md:text-xl text-white/80 mb-8 md:mb-12 max-w-4xl mx-auto leading-relaxed px-4 backdrop-blur-sm bg-white/5 rounded-2xl p-6 border border-white/10">
-            Final-year Informatics student at New Bulgarian University, passionate about web development and
+            Graduate Informatics student at New Bulgarian University, passionate about web development and
             problem-solving. I learn quickly, thrive in teams, and excel at turning business requirements into working
             solutions.
           </p>
